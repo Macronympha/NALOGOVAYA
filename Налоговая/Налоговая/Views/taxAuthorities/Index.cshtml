@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Налоговая.Models.taxAuthority>
+
+@{
+    ViewBag.Title = "Налоговый орган";
+}
+
+<p>
+    @Html.ActionLink("Добавить налоговый орган", "Create")
+</p>
+<div class="datagrid">
+    <table class="table_blur">
+        <thead>
+            <tr>
+                <th>
+                    Налоговый орган:
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.addres)
+                    </td>
+                    <td>
+                        <a class="lnr lnr-pencil" href="/taxAuthorities/Edit/@item.id_taxAuthority">
+                            &#128393;
+                        </a>
+                        <a class="lnr lnr-trash" href="/taxAuthorities/Delete/@item.id_taxAuthority">
+                            &#128465;
+                        </a>
+                    </td>
+                </tr>
+            }
+    </table>
+    </div>
+<div>
+    @Html.ActionLink("Назад", "Admin", "Home")
+</div>
+            

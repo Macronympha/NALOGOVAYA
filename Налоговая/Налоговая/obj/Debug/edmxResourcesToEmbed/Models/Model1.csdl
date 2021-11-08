@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="НалоговаяModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ACT">
+    <Key>
+      <PropertyRef Name="id_act" />
+    </Key>
+    <Property Name="id_act" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_type" Type="Int32" Nullable="false" />
+    <Property Name="id_termsOfUse" Type="Int32" Nullable="false" />
+    <Property Name="id_taxAuthority" Type="Int32" Nullable="false" />
+    <Property Name="id_conclusion" Type="Int32" Nullable="false" />
+    <Property Name="id_equipments" Type="Int32" Nullable="false" />
+    <Property Name="id_users" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="conclusion" Relationship="Self.FK_ACT_conclusion" FromRole="ACT" ToRole="conclusion" />
+    <NavigationProperty Name="equipments" Relationship="Self.FK_ACT_equipments" FromRole="ACT" ToRole="equipments" />
+    <NavigationProperty Name="taxAuthority" Relationship="Self.FK_ACT_taxAuthority" FromRole="ACT" ToRole="taxAuthority" />
+    <NavigationProperty Name="termsOfUse" Relationship="Self.FK_ACT_termsOfUse" FromRole="ACT" ToRole="termsOfUse" />
+    <NavigationProperty Name="type" Relationship="Self.FK_ACT_type" FromRole="ACT" ToRole="type" />
+    <NavigationProperty Name="users" Relationship="Self.FK_ACT_users" FromRole="ACT" ToRole="users" />
+  </EntityType>
+  <EntityType Name="conclusion">
+    <Key>
+      <PropertyRef Name="id_conclusion" />
+    </Key>
+    <Property Name="id_conclusion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ACT" Relationship="Self.FK_ACT_conclusion" FromRole="conclusion" ToRole="ACT" />
+  </EntityType>
+  <EntityType Name="equipments">
+    <Key>
+      <PropertyRef Name="id_equipments" />
+    </Key>
+    <Property Name="id_equipments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ACT" Relationship="Self.FK_ACT_equipments" FromRole="equipments" ToRole="ACT" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_users" Type="Int32" />
+    <NavigationProperty Name="users_role" Relationship="Self.FK_users_role_role" FromRole="role" ToRole="users_role" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="taxAuthority">
+    <Key>
+      <PropertyRef Name="id_taxAuthority" />
+    </Key>
+    <Property Name="id_taxAuthority" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="addres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ACT" Relationship="Self.FK_ACT_taxAuthority" FromRole="taxAuthority" ToRole="ACT" />
+  </EntityType>
+  <EntityType Name="termsOfUse">
+    <Key>
+      <PropertyRef Name="id_termsOfUse" />
+    </Key>
+    <Property Name="id_termsOfUse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ACT" Relationship="Self.FK_ACT_termsOfUse" FromRole="termsOfUse" ToRole="ACT" />
+  </EntityType>
+  <EntityType Name="type">
+    <Key>
+      <PropertyRef Name="id_type" />
+    </Key>
+    <Property Name="id_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ACT" Relationship="Self.FK_ACT_type" FromRole="type" ToRole="ACT" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_users" />
+    </Key>
+    <Property Name="id_users" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ACT" Relationship="Self.FK_ACT_users" FromRole="users" ToRole="ACT" />
+    <NavigationProperty Name="users_role" Relationship="Self.FK_users_role_users" FromRole="users" ToRole="users_role" />
+  </EntityType>
+  <EntityType Name="users_role">
+    <Key>
+      <PropertyRef Name="id_users_role" />
+    </Key>
+    <Property Name="id_users_role" Type="Int32" Nullable="false" />
+    <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="id_users" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="role" Relationship="Self.FK_users_role_role" FromRole="users_role" ToRole="role" />
+    <NavigationProperty Name="users" Relationship="Self.FK_users_role_users" FromRole="users_role" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_ACT_conclusion">
+    <End Role="conclusion" Type="Self.conclusion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="conclusion">
+        <PropertyRef Name="id_conclusion" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_conclusion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_equipments">
+    <End Role="equipments" Type="Self.equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipments">
+        <PropertyRef Name="id_equipments" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_equipments" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_taxAuthority">
+    <End Role="taxAuthority" Type="Self.taxAuthority" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taxAuthority">
+        <PropertyRef Name="id_taxAuthority" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_taxAuthority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_termsOfUse">
+    <End Role="termsOfUse" Type="Self.termsOfUse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="termsOfUse">
+        <PropertyRef Name="id_termsOfUse" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_termsOfUse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_type">
+    <End Role="type" Type="Self.type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="id_type" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_users">
+    <End Role="users" Type="Self.users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_users" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_role_role">
+    <End Role="role" Type="Self.role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users_role" Type="Self.users_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="users_role">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_role_users">
+    <End Role="users" Type="Self.users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users_role" Type="Self.users_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_users" />
+      </Principal>
+      <Dependent Role="users_role">
+        <PropertyRef Name="id_users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="НалоговаяEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ACT" EntityType="Self.ACT" />
+    <EntitySet Name="conclusion" EntityType="Self.conclusion" />
+    <EntitySet Name="equipments" EntityType="Self.equipments" />
+    <EntitySet Name="role" EntityType="Self.role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="taxAuthority" EntityType="Self.taxAuthority" />
+    <EntitySet Name="termsOfUse" EntityType="Self.termsOfUse" />
+    <EntitySet Name="type" EntityType="Self.type" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="users_role" EntityType="Self.users_role" />
+    <AssociationSet Name="FK_ACT_conclusion" Association="Self.FK_ACT_conclusion">
+      <End Role="conclusion" EntitySet="conclusion" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_equipments" Association="Self.FK_ACT_equipments">
+      <End Role="equipments" EntitySet="equipments" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_taxAuthority" Association="Self.FK_ACT_taxAuthority">
+      <End Role="taxAuthority" EntitySet="taxAuthority" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_termsOfUse" Association="Self.FK_ACT_termsOfUse">
+      <End Role="termsOfUse" EntitySet="termsOfUse" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_type" Association="Self.FK_ACT_type">
+      <End Role="type" EntitySet="type" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_users" Association="Self.FK_ACT_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_role_role" Association="Self.FK_users_role_role">
+      <End Role="role" EntitySet="role" />
+      <End Role="users_role" EntitySet="users_role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_role_users" Association="Self.FK_users_role_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_role" EntitySet="users_role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

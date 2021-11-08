@@ -1,0 +1,119 @@
+﻿@model Налоговая.Models.ACT
+
+@{
+    ViewBag.Title = "Редактирование АКТа";
+}
+
+<h2>Редактирование АКТа</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "ACTs1_edit" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="datagrid">
+        <table class="table">
+            <tr>
+                <td>Номер заявки:</td>
+                <td>
+                    @Html.EditorFor(model => model.application, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Место проведения осмотра и оценки технического состояния оборудования:</td>
+                <td>
+                    @Html.DropDownList("id_taxAuthority", null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>Наименование оборудования:</td>
+                <td>
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Организация-производитель (изготовитель) или поставщик оборудования:</td>
+                <td>
+                    @Html.EditorFor(model => model.manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Тип оборудования:</td>
+                <td>
+                    @Html.DropDownList("id_type", null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td>Модель, модификация оборудования:</td>
+                <td>
+                    @Html.DropDownList("id_equipments", null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td>Год выпуска оборудования:</td>
+                <td>
+                    @Html.EditorFor(model => model.year_of_issue, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Дата ввода в эксплуатацию:</td>
+                <td>
+                    @Html.EditorFor(model => model.commissioning, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Условия использования (эксплуатации):</td>
+                <td>
+                    @Html.DropDownList("id_termsOfUse", null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td>Инвентарный, заводской (при наличии) номер оборудования:</td>
+                <td>
+                    @Html.EditorFor(model => model.equipment_number, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Техническое состояние (описание характера и причины неисправности):</td>
+                <td>
+                    @Html.EditorFor(model => model.condition, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>В результате осмотра и оценки технического оборудования было установлено:</td>
+                <td>
+                    @Html.EditorFor(model => model.assessment, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Выводы, заключение, рекомендации:</td>
+                <td>
+                    @Html.DropDownList("id_conclusion", null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td>Дата:</td>
+                <td>
+                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Технический специалист:</td>
+                <td>
+                    @Html.DropDownList("id_users", null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Сохранить" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,146 @@
+﻿@model Налоговая.Models.ACT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Просмотр АКТа</h2>
+
+<div>
+    <div class="datagrid">
+        <table class="table">
+            <tr>
+                <td>
+                    Номер и дата заявки:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.application)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Место проведения осмотра и оценки технического состояния оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.taxAuthority.addres)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Наименование оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Организация-производитель (изготовитель) или поставщик оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.manufacturer)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Тип оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.termsOfUse.title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Модель, модификация оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.equipments.title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Год выпуска оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.year_of_issue)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата ввода в эксплуатацию:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.commissioning)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Условия использования (эксплуатации):
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.termsOfUse.title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Инвентарный, заводской (при наличии) номер оборудования:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.equipment_number)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Техническое состояние (описание характера и причины неисправности):
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.condition)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    В результате осмотра и оценки технического оборудования было установлено:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.assessment)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Выводы, заключение, рекомендации:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.conclusion.content)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.date)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Технический специалист:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.users.surname)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.id_act }) |
+    @Html.ActionLink("Назад", "Index")|
+    @Html.ActionLink("Печать", "Index")
+</p>
+    }
+    @section Scripts {
+    }

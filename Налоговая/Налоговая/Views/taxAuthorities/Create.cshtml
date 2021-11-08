@@ -1,0 +1,38 @@
+﻿@model Налоговая.Models.taxAuthority
+
+@{
+    ViewBag.Title = "Добавить налоговый орган";
+}
+
+<h2>Добавить налоговый орган</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="datagrid">
+        <table class="table">
+            <tr>
+                <td>
+                    Налоговый орган
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.addres, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.addres, "", new { @class = "text-danger" })
+                </td>
+                </table>
+        </div>
+                <div class="form-actions no-color">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+
+                </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Назад", "Index")
+                </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Налоговая.Models.ACT>
+
+@{
+    ViewBag.Title = "Перечень АКТов";
+}
+
+<h2>Перечень АКТов</h2>
+
+@Styles.Render("~/Content/datepicker.css")
+
+    <form method="get">
+        <div class="form-inline">
+            <label class="control-label">Номер и дата заявки: </label>
+            @*@Html.DisplayFor(modelItem => item.application)*@
+
+            <label class="control-label">Дата составления договора </label>
+            @*@Html.DisplayFor(model => item.date, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "txt datepicker-here",
+                        autocomplete = "off",
+                        @readonly = "readonly",
+                        style = "background-color: #fff;",
+                        data_timepicker = "true",
+                        data_position = "right top"
+                    }
+                })*@
+
+            <label class="control-label">Модель</label>
+
+            @*@Html.DropDownList("manufacturer", null, htmlAttributes: new { @class = "form-control" })*@
+
+            <label class="control-label">Место проведения осмотра</label>
+
+            @*@Html.DropDownList("id_taxAuthority", null, htmlAttributes: new { @class = "form-control" })*@
+
+
+            <input type="submit" value="Фильтр" class="btn btn-default" />
+        </div>
+    </form>
+
+<p>
+    @Html.ActionLink("Создать новый АКТ", "Create")
+</p>
+
+<div class="datagrid">
+    <table class="table_blur">
+        <thead>
+            <tr>
+                <th>
+                    Номер и дата заявки:
+                </th>
+                <th>
+                    Место проведения осмотра и оценки технического состояния оборудования:
+                </th>
+                <th>
+                    Наименование оборудования:
+                </th>
+                <th>
+                    Тип оборудования:
+                </th>
+                <th>
+                    Год выпуска оборудования:
+                </th>
+                <th>
+                    Дата:
+                </th>
+                <th>
+                    Технический специалист:
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.application)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.taxAuthority.addres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.year_of_issue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.users.surname)
+                </td>
+                <td>
+                    <a class="lnr lnr-pencil" href="/ACTs1/Edit/@item.id_act">
+                        &#128393;
+                    </a>
+                    <a class="lnr lnr-trash" href="/ACTs1/Delete/@item.id_act">
+                        &#128465;
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/Content/datepicker.min.js"></script>
+    <script type="text/javascript">
+        $('#Exams_Date').datepicker({
+            minDate: new Date()
+        })
+    </script>
+    @Scripts.Render("~/Scripts/validate.js")
+}

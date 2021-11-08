@@ -1,0 +1,44 @@
+﻿@model Налоговая.Models.ACT
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+
+<h3>Вы уверены, что хотите удалить этот АКТ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Номер и дата заявки:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.application)
+        </dd>
+
+        <dt>
+            Место проведения осмотра и оценки технического состояния оборудования:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taxAuthority.addres)
+        </dd>
+        <dt>
+            Наименование оборудования:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

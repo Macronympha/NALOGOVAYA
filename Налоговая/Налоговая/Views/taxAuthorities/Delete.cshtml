@@ -1,0 +1,31 @@
+﻿@model Налоговая.Models.taxAuthority
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите это удалить?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Налоговый орган
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addres)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

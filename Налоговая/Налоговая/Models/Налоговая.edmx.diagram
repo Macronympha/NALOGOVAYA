@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f64a2597b4e64d9cbee8d20bf1b62595" Name="Diagram1">
+        <EntityTypeShape EntityType="НалоговаяModel.ACT" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.conclusion" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.equipments" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.role" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.taxAuthority" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.termsOfUse" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.type" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.users" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="НалоговаяModel.users_role" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="НалоговаяModel.FK_ACT_conclusion1" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_ACT_equipments1" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_ACT_taxAuthority" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_ACT_termsOfUse1" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_ACT_type1" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_ACT_users1" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_users_role_role" ManuallyRouted="false" />
+        <AssociationConnector Association="НалоговаяModel.FK_users_role_users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

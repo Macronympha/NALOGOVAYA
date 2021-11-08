@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Налоговая.Models.users>
+
+@{
+    ViewBag.Title = "Выдать роль администратора";
+}
+
+<h2>Выберите пользователя</h2>
+
+
+
+<div class="datagrid">
+    <table class="table_blur">
+        <thead>
+            <tr>
+                <th>
+                    Фамилия
+                </th>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    Отчество
+                </th>
+                <th>
+                    Логин:
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.patronymic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.login)
+                </td>
+                <td>
+                    <a class="lnr lnr-license" href="/users/Create/@item.id_users">
+                        &#128393;
+                    </a> 
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

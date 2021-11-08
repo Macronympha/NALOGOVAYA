@@ -1,0 +1,49 @@
+﻿@model Налоговая.Models.users
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Вы уверены, что хотите дать права Администратора этому пользователю?</h2>
+
+<div>
+    <h4>users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Фамилия
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            Имя
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Отчество
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patronymic)
+        </dd>
+
+        <dt>
+           Логин
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.login)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.users_role.id_role }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

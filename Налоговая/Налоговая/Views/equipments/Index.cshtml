@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Налоговая.Models.equipments>
+
+@{
+    ViewBag.Title = "Модель, модификация оборудования";
+}
+
+<p>
+    @Html.ActionLink("Добавить оборудование", "Create")
+</p>
+<div class="datagrid">
+    <table class="table_blur">
+        <thead>
+            <tr>
+                <th>
+                    Модель, модификация оборудования:
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+        
+            @foreach (var item in Model)
+            {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+       
+        <td>
+            <a class="lnr lnr-pencil" href="/equipments/Edit/@item.id_equipments">
+                &#128393;
+            </a>
+            <a class="lnr lnr-trash" href="/equipments/Delete/@item.id_equipments">
+                &#128465;
+            </a>
+        </td>
+    </tr>
+            }
+
+    </table>
+    </div>
+<div>
+    @Html.ActionLink("Назад", "Admin", "Home")
+</div>

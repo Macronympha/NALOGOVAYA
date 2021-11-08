@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище НалоговаяModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACT">
+    <Key>
+      <PropertyRef Name="id_act" />
+    </Key>
+    <Property Name="id_act" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_type" Type="int" Nullable="false" />
+    <Property Name="id_termsOfUse" Type="int" Nullable="false" />
+    <Property Name="id_taxAuthority" Type="int" Nullable="false" />
+    <Property Name="id_conclusion" Type="int" Nullable="false" />
+    <Property Name="id_equipments" Type="int" Nullable="false" />
+    <Property Name="id_users" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="condition" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="year_of_issue" Type="smallint" Nullable="false" />
+    <Property Name="commissioning" Type="date" Nullable="false" />
+    <Property Name="equipment_number" Type="nvarchar" MaxLength="100" />
+    <Property Name="assessment" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="application" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="conclusion">
+    <Key>
+      <PropertyRef Name="id_conclusion" />
+    </Key>
+    <Property Name="id_conclusion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipments">
+    <Key>
+      <PropertyRef Name="id_equipments" />
+    </Key>
+    <Property Name="id_equipments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_users" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="taxAuthority">
+    <Key>
+      <PropertyRef Name="id_taxAuthority" />
+    </Key>
+    <Property Name="id_taxAuthority" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="addres" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="termsOfUse">
+    <Key>
+      <PropertyRef Name="id_termsOfUse" />
+    </Key>
+    <Property Name="id_termsOfUse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="type">
+    <Key>
+      <PropertyRef Name="id_type" />
+    </Key>
+    <Property Name="id_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_users" />
+    </Key>
+    <Property Name="id_users" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+    <Property Name="login" Type="nchar" MaxLength="10" />
+    <Property Name="password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="users_role">
+    <Key>
+      <PropertyRef Name="id_users_role" />
+    </Key>
+    <Property Name="id_users_role" Type="int" Nullable="false" />
+    <Property Name="id_role" Type="int" Nullable="false" />
+    <Property Name="id_users" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ACT_conclusion1">
+    <End Role="conclusion" Type="Self.conclusion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="conclusion">
+        <PropertyRef Name="id_conclusion" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_conclusion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_equipments1">
+    <End Role="equipments" Type="Self.equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipments">
+        <PropertyRef Name="id_equipments" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_equipments" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_taxAuthority">
+    <End Role="taxAuthority" Type="Self.taxAuthority" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taxAuthority">
+        <PropertyRef Name="id_taxAuthority" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_taxAuthority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_termsOfUse1">
+    <End Role="termsOfUse" Type="Self.termsOfUse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="termsOfUse">
+        <PropertyRef Name="id_termsOfUse" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_termsOfUse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_type1">
+    <End Role="type" Type="Self.type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="id_type" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACT_users1">
+    <End Role="users" Type="Self.users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ACT" Type="Self.ACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_users" />
+      </Principal>
+      <Dependent Role="ACT">
+        <PropertyRef Name="id_users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_role_role">
+    <End Role="role" Type="Self.role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users_role" Type="Self.users_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="users_role">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_role_users">
+    <End Role="users" Type="Self.users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users_role" Type="Self.users_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_users" />
+      </Principal>
+      <Dependent Role="users_role">
+        <PropertyRef Name="id_users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище НалоговаяModelContainer">
+    <EntitySet Name="ACT" EntityType="Self.ACT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="conclusion" EntityType="Self.conclusion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipments" EntityType="Self.equipments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="taxAuthority" EntityType="Self.taxAuthority" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="termsOfUse" EntityType="Self.termsOfUse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="type" EntityType="Self.type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users_role" EntityType="Self.users_role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ACT_conclusion1" Association="Self.FK_ACT_conclusion1">
+      <End Role="conclusion" EntitySet="conclusion" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_equipments1" Association="Self.FK_ACT_equipments1">
+      <End Role="equipments" EntitySet="equipments" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_taxAuthority" Association="Self.FK_ACT_taxAuthority">
+      <End Role="taxAuthority" EntitySet="taxAuthority" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_termsOfUse1" Association="Self.FK_ACT_termsOfUse1">
+      <End Role="termsOfUse" EntitySet="termsOfUse" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_type1" Association="Self.FK_ACT_type1">
+      <End Role="type" EntitySet="type" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACT_users1" Association="Self.FK_ACT_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="ACT" EntitySet="ACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_role_role" Association="Self.FK_users_role_role">
+      <End Role="role" EntitySet="role" />
+      <End Role="users_role" EntitySet="users_role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_role_users" Association="Self.FK_users_role_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_role" EntitySet="users_role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

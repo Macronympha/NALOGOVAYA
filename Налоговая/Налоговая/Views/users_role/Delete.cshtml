@@ -1,0 +1,41 @@
+﻿@model Налоговая.Models.users_role
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить роль для этого пользователя?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Роль:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role.title)
+        </dd>
+
+        <dt>
+            Пользователь:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.surname)
+            @Html.DisplayFor(model => model.users.name)
+            @Html.DisplayFor(model => model.users.patronymic)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

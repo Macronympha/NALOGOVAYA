@@ -1,0 +1,46 @@
+﻿@model Налоговая.Models.users_role
+
+@{
+    ViewBag.Title = "Выдать роль пользователю";
+}
+
+<h2>Выдать роль пользователю</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="datagrid">
+        <table class="table">
+            <tr>
+                <td>
+                    Роль:
+                </td>
+                <td>
+                    @Html.DropDownList("id_role", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_role, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    Пользователь:
+                </td>
+                <td>
+                    @Html.DropDownList("id_users", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_users, "", new { @class = "text-danger" })
+                </td>
+        </table>
+    </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Добавить" class="btn btn-default" />
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

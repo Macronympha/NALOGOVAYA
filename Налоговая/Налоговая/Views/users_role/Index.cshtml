@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Налоговая.Models.users_role>
+
+@{
+    ViewBag.Title = "Роли";
+}
+
+<h2>Роли</h2>
+
+<p>
+    @Html.ActionLink("Выдать роль", "Create")
+</p>
+<div class="datagrid">
+    <table class="table_blur">
+        <thead>
+            <tr>
+                <th>
+                    Роль
+                </th>
+                <th>
+                    Пользователь
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.role.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.surname)
+            @Html.DisplayFor(modelItem => item.users.name)
+            @Html.DisplayFor(modelItem => item.users.patronymic)
+        </td>
+        <td>
+            <a class="lnr lnr-pencil" href="/users_role/Edit/@item.id_users_role">
+                &#128393;
+            </a>
+            <a class="lnr lnr-trash" href="/users_role/Delete/@item.id_users_role">
+                &#128465;
+            </a>
+        </td>
+
+    </tr>
+        }
+
+    </table>
+    </div>
+<div>
+    @Html.ActionLink("Назад", "Admin", "Home")
+</div>
